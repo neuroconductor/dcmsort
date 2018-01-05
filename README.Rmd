@@ -14,8 +14,9 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-"
 )
 ```
+
 # dcmsort Package: 
-The goal of `dcmsort` is to provide wrapper function to sort DICOM images
+The goal of `dcmsort` is to provide wrapper functions to sort DICOM images
 
 ## Installation
 
