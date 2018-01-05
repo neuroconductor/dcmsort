@@ -20,3 +20,29 @@ You can install `dcmsort` from GitHub with:
 # install.packages("remotes")
 remotes::install_github("muschellij2/dcmsort")
 ```
+
+## Example
+
+Here is an example of sorting and converting a single suject DICOM data
+for non-contrast brain CT images. The `directory` variable is set to the
+DICOM folder for that patient.
+
+``` r
+library(dcmsort)
+sorted = dcmsort(directory = directory, copy_files = FALSE)
+
+outfile = file.path(sorted$directory, "all_hdr.rds")
+all_hdr = read_all_hdr(
+  directory = sorted$directory,
+  outfile = outfile)
+sub_hdr = subset_hdr(all_hdr)
+ct_hdr = noncon_brain_ct(
+  sub_hdr = sub_hdr,
+  delete_localizers = TRUE)
+converted = convert_hdr_nii(
+  sub_hdr = ct_hdr$ct_data, 
+  merge_files = TRUE, 
+  ignore_derived = TRUE,
+  overwrite = FALSE
+)
+```
