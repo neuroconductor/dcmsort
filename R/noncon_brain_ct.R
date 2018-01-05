@@ -48,9 +48,6 @@ noncon_brain_ct = function(
     file.remove(bad_files[fe])
   }
 
-  keep_files = keep_files %>%
-    filter(!(file %in% bad_files))
-
   wide = wide %>%
     filter(!(file %in% bad_files))
 
@@ -61,8 +58,6 @@ noncon_brain_ct = function(
   bad_files = wide$file[
     grepl("BONE", wide$ConvolutionKernel)]
 
-  keep_files = keep_files %>%
-    filter(!(file %in% bad_files))
 
   wide = wide %>%
     filter(!(file %in% bad_files))
@@ -78,9 +73,6 @@ noncon_brain_ct = function(
   ######################################
   bad_files = wide$file[
     grepl("BONE", toupper(wide$SeriesDescription))]
-
-  keep_files = keep_files %>%
-    filter(!(file %in% bad_files))
 
   wide = wide %>%
     filter(!(file %in% bad_files))
@@ -103,9 +95,6 @@ noncon_brain_ct = function(
       grepl("ANGIO", wide$StudyDescription))
   bad_files = wide$file[angio]
 
-  keep_files = keep_files %>%
-    filter(!(file %in% bad_files))
-
   wide = wide %>%
     filter(!(file %in% bad_files))
 
@@ -125,9 +114,6 @@ noncon_brain_ct = function(
     !grepl("BRAIN|BLOOD|HEAD", toupper(wide$SeriesDescription)) &
       grepl("SPINE", toupper(wide$StudyDescription)))
   bad_files = wide$file[angio]
-
-  keep_files = keep_files %>%
-    filter(!(file %in% bad_files))
 
   wide = wide %>%
     filter(!(file %in% bad_files))
