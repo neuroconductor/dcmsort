@@ -21,7 +21,8 @@ Suggests:
     rmarkdown,
     covr,
     testthat
-Remotes: muschellij2/dcm2niir, muschellij2/dcmtk
+Remotes: muschellij2/dcm2niir, muschellij2/dcmtk,
+    jonclayden/tractor/tractor.base
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
