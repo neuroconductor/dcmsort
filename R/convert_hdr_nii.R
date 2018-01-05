@@ -14,7 +14,8 @@
 #'
 #' @importFrom dcm2niir dcm2nii check_dcm2nii
 #' @importFrom neurobase readnii window_img writenii
-#' @importFrom oro.nifti cal_img scl_slope scl_inter aux_file descrip dim_
+#' @importFrom oro.nifti cal_img scl_slope scl_inter aux_file descrip
+#' @importFrom fslr dim_
 #' @importFrom oro.nifti scl_slope<- scl_inter<- aux_file<- descrip<-
 #'
 convert_hdr_nii = function(
