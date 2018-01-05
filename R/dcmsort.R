@@ -63,6 +63,14 @@ dcmsort = function(
     }
   }
 
+  files = list.files(
+    directory, full.names = TRUE,
+    recursive = TRUE)
+  files = files[!file.info(files)$isdir]
+  if (length(files) == 0) {
+    stop("There are no files in this directory that aren't directories")
+  }
+
   # sort the data
   res = tractor.base::sortDicomDirectories(
     directory,
