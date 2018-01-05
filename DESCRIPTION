@@ -21,6 +21,7 @@ Suggests:
     rmarkdown,
     covr,
     testthat
+Remotes: muschellij2/dcm2niir, muschellij2/dcmtk
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
