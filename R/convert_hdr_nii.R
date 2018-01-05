@@ -23,6 +23,9 @@ convert_hdr_nii = function(
   ignore_derived = TRUE,
   overwrite = FALSE) {
 
+  directory = NULL
+  rm(list = "directory")
+
   wide = sub_hdr
   ### still a bone window
   run_dirs = unique(wide$directory)
