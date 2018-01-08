@@ -32,7 +32,7 @@ convert_hdr_nii = function(
   run_dirs = unique(wide$directory)
 
 
-  all_output = ""
+  all_newfiles = all_output = ""
   all_df = NULL
   for (i in seq_along(run_dirs)) {
     print(i)
@@ -69,6 +69,7 @@ convert_hdr_nii = function(
         df$outfile = NA
       }
       all_output = c(all_output, outfile)
+      all_newfiles = c(all_newfiles, new_file)
       if (length(outfile) > 0 & !all(file.exists(new_file)) || overwrite) {
         for (ifile in seq_along(outfile)) {
           ofile = outfile[ifile]
@@ -112,6 +113,7 @@ convert_hdr_nii = function(
   all_output = unique(all_output)
   all_output = all_output[file.exists(all_output)]
   L = list(dcm2nii_results = all_df,
-           output_files = all_output)
+           output_files = all_newfiles,
+           raw_output_files = all_output)
   return(L)
 }
