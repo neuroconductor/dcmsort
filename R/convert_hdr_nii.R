@@ -33,9 +33,7 @@ convert_hdr_nii = function(
 
 
   all_output = ""
-  df = data.frame(
-    directory =  run_dirs,
-    result = NA, stringsAsFactors = FALSE)
+  all_df = NULL
   for (i in seq_along(run_dirs)) {
     print(i)
     basedir = run_dirs[i]
@@ -50,20 +48,28 @@ convert_hdr_nii = function(
     res = dcm2nii(
       basedir = basedir,
       opts = opts )
+    df = data.frame(
+      directory = basedir,
+      result = res$result)
+
     # result
     # if (res$result <= 1 ) {
     #   if (res$result != 0) {
     #     warning(paste0("directory is ", basedir,
     #                 "has non-zero result"))
     #   }
-    df$result[i] = res$result
     if (res$result == 0) {
       outfile = check_dcm2nii(res)
       new_file = file.path(
         directory,
         paste0(bn, "_", basename(outfile)))
+      if (length(outfile) > 0) {
+        df = cbind(df, outfile = new_file)
+      } else {
+        df$outfile = NA
+      }
       all_output = c(all_output, outfile)
-      if (length(outfile) > 0 & !all(file.exists(new_file))|| overwrite) {
+      if (length(outfile) > 0 & !all(file.exists(new_file)) || overwrite) {
         for (ifile in seq_along(outfile)) {
           ofile = outfile[ifile]
           if (dim_(ofile)[4] > 1) {
@@ -100,11 +106,12 @@ convert_hdr_nii = function(
       warning(paste0("directory is ", basedir,
                      " and dcm2nii failed"))
     }
+    all_df = rbind(all_df, df)
   }
 
   all_output = unique(all_output)
   all_output = all_output[file.exists(all_output)]
-  L = list(dcm2nii_results = df,
+  L = list(dcm2nii_results = all_df,
            output_files = all_output)
   return(L)
 }
