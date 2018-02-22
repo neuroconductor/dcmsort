@@ -36,11 +36,11 @@ read_all_hdr = function(
     for (i in seq(n_dirs)) {
       setTxtProgressBar(pb, value = i)
       basedir = new_dirs[i]
-      files_in_dir = list.files(path = basedir)
+      files_in_dir = list.files(path = basedir, recursive = TRUE)
       dirs_in_dir = list.dirs(
         path = basedir,
         full.names = FALSE,
-        recursive = FALSE)
+        recursive = TRUE)
       files_in_dir = files_in_dir[
         !(files_in_dir %in% dirs_in_dir)]
       if (length(files_in_dir) > 0) {
