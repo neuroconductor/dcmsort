@@ -19,6 +19,8 @@ passed do \code{dcm2nii} options}
 \item{overwrite}{Should files be overwritten if they exist}
 
 \item{rename}{Should the files be renamed}
+
+\item{opts}{additional options passed to \code{\link{dcm2nii}}}
 }
 \value{
 A list of the output filenames and the result for each directory

@@ -1,5 +1,5 @@
 Package: dcmsort
-Version: 0.2.2
+Version: 0.2.3
 Title: Sort DICOM Images
 Description: Wrapper function to sort DICOM images.
 Authors@R: structure(list(structure(list(given = "John", family = "Muschelli", 

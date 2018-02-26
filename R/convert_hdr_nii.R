@@ -8,6 +8,7 @@
 #' @param rename Should the files be renamed
 #' @param ignore_derived Should derived images be ignored,
 #' passed do \code{dcm2nii} options
+#' @param opts additional options passed to \code{\link{dcm2nii}}
 #'
 #' @return A list of the output filenames and the result for each directory
 #' \code{dcm2nii} call
