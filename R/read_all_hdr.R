@@ -21,8 +21,17 @@ read_all_hdr = function(
   rm(list = "fname")
 
   if (!file.exists(outfile) || overwrite) {
-    new_dirs = list.dirs(directory,
-                         recursive = FALSE)
+    # new_dirs = list.dirs(directory,
+    #                      recursive = FALSE,
+    #                      full.names = TRUE)
+    new_dirs = list.files(directory,
+                         recursive = TRUE,
+                         include.dirs = FALSE,
+                         full.names = TRUE)
+    # new_dirs = new_dirs[ !grepl("[.]nii[.]gz$", new_dirs)]
+    # new_dirs = new_dirs[ !grepl("[.]rds$", new_dirs)]
+    # new_dirs = new_dirs[ !grepl("[.]rda$", new_dirs)]
+    new_dirs = unique(dirname(new_dirs))
 
 
     ## how many files in that directory - under 5 - remove

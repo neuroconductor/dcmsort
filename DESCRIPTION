@@ -8,7 +8,7 @@ Authors@R: structure(list(structure(list(given = "John", family = "Muschelli",
     "comment"))), class = "person")
 License: GPL-3
 Imports:
-    dcmtk (>= 0.5.5),
+    dcmtk (>= 0.5.7),
     tidyr, 
     dplyr,
     neurobase,

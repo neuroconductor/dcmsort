@@ -5,6 +5,7 @@
 #' data relevant from \code{\link{noncon_brain_ct}}
 #' @param merge_files Should files be merged, passed do \code{dcm2nii} options
 #' @param overwrite Should files be overwritten if they exist
+#' @param rename Should the files be renamed
 #' @param ignore_derived Should derived images be ignored,
 #' passed do \code{dcm2nii} options
 #'
@@ -22,7 +23,9 @@ convert_hdr_nii = function(
   sub_hdr,
   merge_files = TRUE,
   ignore_derived = TRUE,
-  overwrite = FALSE) {
+  overwrite = FALSE,
+  rename = TRUE,
+  opts = "-f %t") {
 
   directory = NULL
   rm(list = "directory")
@@ -34,17 +37,19 @@ convert_hdr_nii = function(
 
   all_newfiles = all_output = ""
   all_df = NULL
+  opts = paste0(
+    "-9 ",
+    ifelse(ignore_derived, "-i y ", ""),
+    ifelse(merge_files, " -m y ", ""),
+    opts)
+  opts = gsub("\\s+", " ", opts)
+  opts = trimws(opts)
+
   for (i in seq_along(run_dirs)) {
     print(i)
     basedir = run_dirs[i]
     bn = basename(basedir)
-    opts = paste0(
-      "-9 ",
-      ifelse(ignore_derived, "-i y ", ""),
-      ifelse(merge_files, " -m y ", ""),
-      " -f %t ")
-    opts = gsub("\\s+", " ", opts)
-    opts = trimws(opts)
+
     res = dcm2nii(
       basedir = basedir,
       opts = opts )
@@ -60,9 +65,15 @@ convert_hdr_nii = function(
     #   }
     if (res$result == 0) {
       outfile = check_dcm2nii(res)
-      new_file = file.path(
+      if (rename) {
+        new_file = file.path(
         directory,
         paste0(bn, "_", basename(outfile)))
+      } else {
+        new_file = file.path(directory,
+                             basename(outfile))
+      }
+
       if (length(outfile) > 0) {
         df = cbind(df, outfile = new_file)
       } else {

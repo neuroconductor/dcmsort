@@ -5,7 +5,7 @@
 \title{Convert the data from a Header \code{data.frame} into NIfTI files}
 \usage{
 convert_hdr_nii(sub_hdr, merge_files = TRUE, ignore_derived = TRUE,
-  overwrite = FALSE)
+  overwrite = FALSE, rename = TRUE, opts = "-f \%t")
 }
 \arguments{
 \item{sub_hdr}{Output from \code{\link{subset_hdr}} or the
@@ -17,6 +17,8 @@ data relevant from \code{\link{noncon_brain_ct}}}
 passed do \code{dcm2nii} options}
 
 \item{overwrite}{Should files be overwritten if they exist}
+
+\item{rename}{Should the files be renamed}
 }
 \value{
 A list of the output filenames and the result for each directory
