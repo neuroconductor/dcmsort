@@ -5,7 +5,8 @@
 \title{Read all DICOM headers in a directory and return a \code{data.frame}}
 \usage{
 read_all_hdr(directory, outfile = tempfile(fileext = ".rds"),
-  overwrite = FALSE)
+  overwrite = FALSE, remove_suffixes = c("rds", "rois_series", "exe",
+  "bat"))
 }
 \arguments{
 \item{directory}{Directory of DICOM files}
@@ -14,6 +15,9 @@ read_all_hdr(directory, outfile = tempfile(fileext = ".rds"),
 \code{overwrite = FALSE}, then it will be read in and returned.}
 
 \item{overwrite}{Should the RDS file be overwritten if it exists}
+
+\item{remove_suffixes}{suffixes to be removed from \code{list.files}
+when trying to determine directories with DICOM}
 }
 \value{
 A \code{data.frame} of all the tags

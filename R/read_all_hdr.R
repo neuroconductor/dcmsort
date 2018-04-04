@@ -5,6 +5,8 @@
 #' @param outfile Output RDS file to write.  If it exists and
 #' \code{overwrite = FALSE}, then it will be read in and returned.
 #' @param overwrite Should the RDS file be overwritten if it exists
+#' @param remove_suffixes suffixes to be removed from \code{list.files}
+#' when trying to determine directories with DICOM
 #'
 #' @return A \code{data.frame} of all the tags
 #' @seealso \code{\link{read_dicom_header}}
@@ -15,7 +17,8 @@
 read_all_hdr = function(
   directory,
   outfile =  tempfile(fileext = ".rds"),
-  overwrite = FALSE
+  overwrite = FALSE,
+  remove_suffixes = c("rds", "rois_series", "exe", "bat")
 ) {
   fname = NULL
   rm(list = "fname")
@@ -28,7 +31,10 @@ read_all_hdr = function(
                          recursive = TRUE,
                          include.dirs = FALSE,
                          full.names = TRUE)
-    new_dirs = new_dirs[ !grepl("[.]rois_series$", new_dirs)]
+    for (irm in seq_along(remove_suffixes)) {
+      ext = paste0("[.]", remove_suffixes[irm], "$")
+      new_dirs = new_dirs[ !grepl(ext, new_dirs)]
+    }
     # new_dirs = new_dirs[ !grepl("[.]rds$", new_dirs)]
     # new_dirs = new_dirs[ !grepl("[.]rda$", new_dirs)]
     new_dirs = unique(dirname(new_dirs))
