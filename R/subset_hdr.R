@@ -64,10 +64,18 @@ subset_hdr = function(
     filter(ind == 1)
 
 
-
   wide = keep_files %>%
     select(-tag) %>%
-    spread(key = name, value = value) %>%
+    spread(key = name, value = value)
+  cn = colnames(wide)
+  for (icn in c("ConvolutionKernel", "StudyDescription")) {
+    if (!icn %in% cn) {
+      warning(paste0("No ", icn))
+    }
+    wide[, icn] = ""
+  }
+
+  wide = wide %>%
     mutate(ImageType = toupper(ImageType),
            ConvolutionKernel = toupper(ConvolutionKernel),
            StudyDescription = toupper(StudyDescription))

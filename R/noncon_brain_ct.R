@@ -29,7 +29,10 @@ noncon_brain_ct = function(
   removed = orig_wide %>%
     filter(!(file %in% wide$file))
 
-
+  if (!"ImageType" %in% colnames(wide)) {
+    warning("ImageType not in the header of the data!")
+    wide$ImageType = ""
+  }
   wide$ImageType = gsub("\\\\", ",", wide$ImageType)
   ######################################
   # Remove localizers/Dose Reports/
