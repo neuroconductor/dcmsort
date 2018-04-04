@@ -68,7 +68,8 @@ subset_hdr = function(
     select(-tag) %>%
     spread(key = name, value = value)
   cn = colnames(wide)
-  for (icn in c("ConvolutionKernel", "StudyDescription")) {
+  for (icn in c("ConvolutionKernel", "StudyDescription",
+                "ImageType")) {
     if (!icn %in% cn) {
       warning(paste0("No ", icn))
     }
