@@ -1,5 +1,5 @@
 Package: dcmsort
-Version: 0.2.4
+Version: 0.2.5.1
 Title: Sort DICOM Images
 Description: Wrapper function to sort DICOM images.
 Authors@R: structure(list(structure(list(given = "John", family = "Muschelli", 
@@ -32,4 +32,4 @@ Maintainer: John Muschelli <muschellij2@gmail.com>
 VignetteBuilder: knitr
 URL: https://github.com/muschellij2/dcmsort
 BugReports: https://github.com/muschellij2/dcmsort/issues
-RoxygenNote: 6.0.1.9000
+RoxygenNote: 6.1.0

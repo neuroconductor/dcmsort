@@ -132,6 +132,12 @@ noncon_brain_ct = function(
   wide = wide[ wide$n >= min_files,]
   removed = orig_wide %>%
     filter(!(file %in% wide$file))
+  removed = removed %>%
+    mutate(directory = dirname(file)) %>%
+    group_by(directory) %>%
+    mutate(n = n()) %>%
+    ungroup()
+
 
   L = list(ct_data = wide,
            non_ct_data = removed)

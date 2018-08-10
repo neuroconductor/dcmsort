@@ -9,6 +9,7 @@
 #' @param ignore_derived Should derived images be ignored,
 #' passed do \code{dcm2nii} options
 #' @param opts additional options passed to \code{\link{dcm2nii}}
+#' @param outdir output directory
 #'
 #' @return A list of the output filenames and the result for each directory
 #' \code{dcm2nii} call
@@ -26,7 +27,8 @@ convert_hdr_nii = function(
   ignore_derived = TRUE,
   overwrite = FALSE,
   rename = TRUE,
-  opts = "-f %t") {
+  opts = "-f %t",
+  outdir = tempdir()) {
 
   directory = NULL
   rm(list = "directory")
@@ -68,10 +70,10 @@ convert_hdr_nii = function(
       outfile = check_dcm2nii(res)
       if (rename) {
         new_file = file.path(
-        directory,
+          outdir,
         paste0(bn, "_", basename(outfile)))
       } else {
-        new_file = file.path(directory,
+        new_file = file.path(outdir,
                              basename(outfile))
       }
 
@@ -122,8 +124,11 @@ convert_hdr_nii = function(
     all_df = rbind(all_df, df)
   }
 
-  all_output = unique(all_output)
+  all_newfiles = all_newfiles[file.exists(all_output)]
   all_output = all_output[file.exists(all_output)]
+  no_dups = !duplicated(all_output)
+  all_newfiles = all_newfiles[no_dups]
+  all_output = all_output[no_dups]
   L = list(dcm2nii_results = all_df,
            output_files = all_newfiles,
            raw_output_files = all_output)

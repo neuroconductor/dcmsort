@@ -5,7 +5,8 @@
 \title{Convert the data from a Header \code{data.frame} into NIfTI files}
 \usage{
 convert_hdr_nii(sub_hdr, merge_files = TRUE, ignore_derived = TRUE,
-  overwrite = FALSE, rename = TRUE, opts = "-f \%t")
+  overwrite = FALSE, rename = TRUE, opts = "-f \%t",
+  outdir = tempdir())
 }
 \arguments{
 \item{sub_hdr}{Output from \code{\link{subset_hdr}} or the
@@ -21,6 +22,8 @@ passed do \code{dcm2nii} options}
 \item{rename}{Should the files be renamed}
 
 \item{opts}{additional options passed to \code{\link{dcm2nii}}}
+
+\item{outdir}{output directory}
 }
 \value{
 A list of the output filenames and the result for each directory
