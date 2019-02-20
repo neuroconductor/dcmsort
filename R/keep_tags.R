@@ -14,6 +14,8 @@ relevant_tags = function() {
     "(0028,0030)", "(0008,2112)", "(0008,103e)",
     "(0008,1030)", "(0028,1050)", "(0028,1051)",
     "(0028,1055)",
+    "(0028,1050)", # WindowCenter
+    "(0028,1051)", # WindowWidth
     "(0008,0050)", #AccessionNumber
     "(0020,0012)", #AcquisitionNumber
     "(0020,0011)" # SeriesNumber
@@ -27,6 +29,7 @@ relevant_fields = function() {
   no_double = c("ConvolutionKernel", "ImageType", "Modality", "PixelSpacing",
                 "SeriesDescription",
                 "SliceThickness", "StudyDescription",
+                "WindowWidth", "WindowCenter",
                 # "SeriesNumber",
                 "AccessionNumber", "AcquisitionNumber")
 }
