@@ -72,8 +72,8 @@ subset_hdr = function(
                 "ImageType")) {
     if (!icn %in% cn) {
       warning(paste0("No ", icn))
+      wide[, icn] = ""
     }
-    wide[, icn] = ""
   }
 
   wide = wide %>%
