@@ -2,28 +2,14 @@ Package: dcmsort
 Version: 0.3.0
 Title: Sort DICOM Images
 Description: Wrapper function to sort DICOM images.
-Authors@R: structure(list(structure(list(given = "John", family = "Muschelli", 
-        role = c("aut", "cre"), email = "muschellij2@gmail.com", 
-        comment = NULL), .Names = c("given", "family", "role", "email", 
-    "comment"))), class = "person")
+Authors@R: structure(list(structure(list(given = "John", family =
+        "Muschelli", role = c("aut", "cre"), email =
+        "muschellij2@gmail.com", comment = NULL), .Names = c("given",
+        "family", "role", "email", "comment"))), class = "person")
 License: GPL-3
-Imports:
-    dcmtk (>= 0.5.7),
-    tidyr, 
-    dplyr,
-    neurobase,
-    oro.nifti,
-    dcm2niir,
-    fslr,
-    tractor.base (>= 3.1.3),
-    utils
-Suggests: 
-    knitr,
-    rmarkdown,
-    covr,
-    testthat
-Remotes: muschellij2/dcm2niir, muschellij2/dcmtk,
-    jonclayden/tractor/tractor.base
+Imports: dcmtk (>= 0.5.7), tidyr, dplyr, neurobase, oro.nifti,
+        dcm2niir, fslr, tractor.base (>= 3.1.3), utils
+Suggests: knitr, rmarkdown, covr, testthat
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
@@ -33,3 +19,12 @@ VignetteBuilder: knitr
 URL: https://github.com/muschellij2/dcmsort
 BugReports: https://github.com/muschellij2/dcmsort/issues
 RoxygenNote: 6.1.1
+Repository: Neuroconductor
+Remotes:  
+    jonclayden/tractor/tractor.base,
+    neuroconductor/dcm2niir@cd9c14f5234e08d13eea0319a25caec3812bb3ab,
+    neuroconductor/dcmtk@491cbcea629724ddf29fcf21643abe277a816723,
+    neuroconductor/oro.nifti@bd06b05d2a090c743e51d745a826e8b77af278f0,
+    neuroconductor/neurobase@1d4b172915192d419b4defb2e56d84d7541c03cd,
+    neuroconductor/fslr@2836c318184779a56162a0b4936ee42d348395a7
+biocViews: 

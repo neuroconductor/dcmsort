@@ -4,3 +4,8 @@
 ^README\.Rmd$
 ^appveyor\.yml$
 ^\.travis\.yml$
+^DESCRIPTION\.bak$
+^\.github$
+^autoci\.yml$
+^autoci_pkgdown\.yml$
+^tic\.R$
